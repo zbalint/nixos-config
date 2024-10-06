@@ -39,6 +39,8 @@
     };
   };
 
+  time.timeZone = "Europe/Budapest";
+
   networking.firewall = {
     enable = true;
     trustedInterfaces = [ "tailscale0" ];
@@ -50,7 +52,6 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
-    nerdfonts
     tailscale 
     firefox
     vscode
@@ -67,9 +68,23 @@
     rclone
   ];
 
-  programs.fish.enable = true;
+  fonts.packages = with pkgs; [
+    font-awesome
+    powerline-fonts
+    powerline-symbols
+    (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+  ];
 
-  users.users.root.hashedPassword = "!";
+  programs = {
+    fish.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+     # pinentryFlavor = "gnome3";
+    };
+  }; 
+
+  #users.users.root.hashedPassword = "!";
   users.users.casper = {
     isNormalUser = true;
     description = "Zoltán Bálint";
@@ -84,7 +99,7 @@
 
   services = {
     tailscale.enable = true;
-    openssh .enable = false;
+    openssh.enable = false;
     
     xserver = {
       enable = true;
