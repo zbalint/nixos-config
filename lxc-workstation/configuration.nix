@@ -68,6 +68,8 @@
     mc
     git
     rclone
+    xclip
+    xrdp
   ];
 
   fonts.packages = with pkgs; [
@@ -105,10 +107,10 @@
     xserver = {
       enable = true;
       xkb.layout="hu";
-      xkb.variant = "";
+      xkb.variant = "standard";
       desktopManager.xfce.enable = true;
       displayManager.lightdm.enable = true;
-      displayManager.sessionCommands = "xkbcomp /home/casper/.keyboard_layout_hax/layout.xkb $DISPLAY";
+      displayManager.sessionCommands = "setxkbmap hu";
     };
 
     xrdp = {
