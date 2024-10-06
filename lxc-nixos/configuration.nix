@@ -52,6 +52,8 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    man-pages
+    man-pages-posix
     tailscale 
     firefox
     vscode
@@ -80,7 +82,6 @@
     gnupg.agent = {
       enable = true;
       enableSSHSupport = true;
-     # pinentryFlavor = "gnome3";
     };
   }; 
 
@@ -107,6 +108,7 @@
       xkb.variant = "";
       desktopManager.xfce.enable = true;
       displayManager.lightdm.enable = true;
+      displayManager.sessionCommands = "xkbcomp /home/casper/.keyboard_layout_hax/layout.xkb $DISPLAY";
     };
 
     xrdp = {
