@@ -61,6 +61,7 @@
     zellij
     wget
     vim
+    neovim
     btop
     htop
     thefuck
@@ -70,6 +71,8 @@
     rclone
     xclip
     xrdp
+    xfce.xfce4-clipman-plugin
+    xfce.xfce4-xkb-plugin
   ];
 
   fonts.packages = with pkgs; [
